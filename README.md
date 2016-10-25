@@ -2,11 +2,12 @@
 Adapted from presentation given by Josh Butts at ZendCon 2016
 
 Utilizes PSR7/Zend DIACTOROS frameworks to implement a custom middleware stack.
-Code devised from talk Given by Josh Butts at ZendCon 2016.  Code modified further by Chris Botte
+Code devised from live coding session led by by Josh Butts at ZendCon 2016.  
+Code modified/commented further by Chris Botte
 
 Simple Stack performs the following:
 
-1. Using basic Middleware Auth, prompts user tologin to site (U: admin P: password)
+1. Using basic Middleware Auth, prompts user to login to site (U: admin P: password)
 
 2. HomepageMiddleware generates the initial response: 
     Hello, admin. You are currently reading content from HompageMiddleware
