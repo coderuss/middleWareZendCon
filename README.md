@@ -10,6 +10,7 @@ Simple Stack performs the following:
 1. Using basic Middleware Auth, prompts user to login to site (U: admin P: password)
 
 2. HomepageMiddleware generates the initial response: 
+
     Hello, admin. You are currently reading content from HompageMiddleware
 
 3. StringReverserMiddleware, takes entire body content and reverses the string.  Reversed content is writtent to body
