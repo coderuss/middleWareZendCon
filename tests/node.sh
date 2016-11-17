@@ -4,6 +4,9 @@
 curl -sL https://deb.nodesource.com/setup | sudo bash - #http://stackoverflow.com/questions/12913141/message-failed-to-fetch-from-registry-while-trying-to-install-any-module
 sudo apt-get install nodejs -y
 sudo apt-get install build-essential -y
+sudo rm /usr/bin/node | true
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+
 sudo npm install -g request
 sudo npm install -g moment
 
