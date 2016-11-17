@@ -143,6 +143,8 @@ $response = $dispatcher(ServerRequestFactory::fromGlobals(), new Response());
 * [Honeypot](#honeypot)
 * [Https](#https)
 * [ImageTransformer](#imagetransformer)
+* [IncludeResponse](#includeresponse)
+* [JsonSchema](#jsonschema)
 * [LanguageNegotiation](#languagenegotiation)
 * [LeagueRoute](#leagueroute)
 * [MethodOverride](#methodoverride)
@@ -898,6 +900,42 @@ $middlewares = [
 ];
 ```
 
+### IncludeResponse
+
+Useful to include old style applications, in which each page has it's own php file. For example, let's say we have an application with paths like `/about-us.php` or `/about-us` (resolved to `/about-us/index.php`), this middleware gets the php file, include it safely, capture the output and the headers send and create a response with the results. If the file does not exits, returns a `404` response (unless `continueOnError` is true).
+
+```php
+use Psr7Middlewares\Middleware;
+
+$middlewares = [
+    Middleware::includeResponse('/doc/root'), //The path of the document root
+        ->continueOnError(true)               // (optional) to continue with the next middleware on error or not
+];
+```
+
+### JsonSchema
+
+Uses [justinrainbow/json-schema](https://github.com/justinrainbow/json-schema) to validate an `application/json` request body using route-matched JSON schemas:
+
+```php
+use Psr7Middlewares\Middleware;
+
+$middlewares = [
+
+    // Transform `application/json` into an object, which is a requirement of `justinrainbow/json-schema`.
+    Middleware::payload([
+        'forceArray' => false,
+    ]),
+
+    // Provide a map of route-prefixes to JSON schema files.
+    Middleware::jsonSchema([
+        '/en/v1/users' => WEB_ROOT . '/json-schema/en.v1.users.json',
+        '/en/v1/posts' => WEB_ROOT . '/json-schema/en.v1.posts.json',
+        '/en/v2/posts' => WEB_ROOT . '/json-schema/en.v2.posts.json',
+    ])
+];
+```
+
 ### LanguageNegotiation
 
 Uses [willdurand/Negotiation](https://github.com/willdurand/Negotiation) to detect and negotiate the client language using the Accept-Language header and (optionally) the uri's path. You must provide an array with all available languages:
@@ -983,7 +1021,9 @@ use Psr7Middlewares\Middleware;
 
 $middlewares = [
     
-    Middleware::Payload(),
+    Middleware::Payload([     // (optional) Array of parsing options:
+        'forceArray' => false // Force to use arrays instead objects in json (true by default)
+    ]),
 
     function ($request, $response, $next) {
         //Get the parsed body

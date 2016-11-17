@@ -1,0 +1,28 @@
+language: php
+
+php:
+  - 7.0
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: hhvm
+
+mysql:
+  database: cloudbooks
+  username: root
+  password: root
+  encoding: utf8
+
+before_install:
+  - sudo apt-get update > /dev/null
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+
+install:
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+before_script:
+  - composer install -vvv
+
+
+script: phpunit ./tests

@@ -1,0 +1,9 @@
+/build
+/vendor
+.project
+.vagrant/
+
+.settings/
+
+.buildpath
+*.phar
