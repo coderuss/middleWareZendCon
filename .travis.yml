@@ -37,9 +37,9 @@ before_script:
   - sudo cp -f travis-ci-apache /etc/apache2/sites-available/default
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
   - sudo service apache2 restart
-  - sudo tests/node.sh
-  - sudo tests/before.sh
-  - sudo tests/start-selenium.sh &
+  - sudo bash tests/node.sh
+  - sudo bash tests/before.sh
+  - sudo bash tests/start-selenium.sh &
   - sleep 3
 
 

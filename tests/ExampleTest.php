@@ -4,6 +4,9 @@ use Laracasts\Integrated\Extensions\Selenium as IntegrationTest;
 
 class ExampleTest extends IntegrationTest
 {
+    
+    protected $baseUrl = 'http://localhost:8888';
+    
 
     /** test */
     function it_verifies_that_pages_load_properly()
