@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
+sudo php5dismod xdebug
 # install Composer
-sudo curl -s https://getcomposer.org/installer | php
+curl -s https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 composer self-update
 
