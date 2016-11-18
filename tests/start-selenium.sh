@@ -1,1 +1,1 @@
-sudo xvfb-run --server-args="-screen 0, 1366x768x24" selenium-standalone start -debug
+sudo xvfb-run -e /dev/stdout --auto-servernum --server-args="-screen 0, 1366x768x24" selenium-standalone start -debug

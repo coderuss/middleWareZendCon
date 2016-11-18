@@ -8,8 +8,8 @@ sudo apt-get install firefox -y
 
 sudo npm install selenium-standalone@latest -g
 
-#sudo selenium-standalone install --drivers.chrome.version=2.15 --drivers.chrome.baseURL=https://chromedriver.storage.googleapis.com
-sudo selenium-standalone install
+sudo selenium-standalone install --drivers.chrome.version=2.15 --drivers.chrome.baseURL=https://chromedriver.storage.googleapis.com
+#sudo selenium-standalone install
 
 sudo apt-get install xvfb -y
 
