@@ -39,8 +39,7 @@ before_script:
   - sudo service apache2 restart
   - sudo bash tests/node.sh
   - sudo bash tests/before.sh
-  - sudo bash tests/start-selenium.sh &
-  - sleep 3
+  - sudo bash tests/start-selenium.sh
 
 
 script: phpunit ./tests
